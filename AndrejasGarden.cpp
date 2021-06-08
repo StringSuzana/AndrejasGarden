@@ -1,5 +1,17 @@
 
+/**
+ * @file AndrejasGarden.cpp
+ * @author StringSuzana
+ * @brief 
+ * @version 1.0
+ * @date 2021-06-08
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "config.h"
+
 int pumpPin_1 = 12;
 int pumpPin_2 = 13;
 int pumpPin_3 = 15;
@@ -16,6 +28,7 @@ unsigned long time_1 = 0;
 unsigned long time_2 = 0;
 unsigned long time_3 = 0;
 int count = 0;
+
 #define IO_LOOP_DELAY 15000
 unsigned long lastUpdate = 0;
 

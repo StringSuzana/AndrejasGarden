@@ -2,12 +2,12 @@
 /**
  * @file AndrejasGarden.cpp
  * @author StringSuzana
- * @brief 
+ * @brief
  * @version 1.0
  * @date 2021-06-08
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #include "config.h"
@@ -40,7 +40,7 @@ void setup() {
   pinMode(pumpPin_1, OUTPUT);
   pinMode(pumpPin_2, OUTPUT);
   pinMode(pumpPin_3, OUTPUT);
-  
+
   Serial.begin(115200);
   while(! Serial);
   Serial.print("Connecting to Adafruit IO");
@@ -49,7 +49,7 @@ void setup() {
   pump1->onMessage(handlePump1);
    pump2->onMessage(handlePump2);
     pump3->onMessage(handlePump3);
-    
+
   while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
     delay(500);
@@ -57,7 +57,7 @@ void setup() {
 
   Serial.println();
   Serial.println(io.statusText());
-  
+
   pump1->get();
   pump2->get();
   pump3->get();
@@ -82,52 +82,52 @@ void loop() {
    pump3_is_on=false;
    }
 }
-void handlePump1(AdafruitIO_Data *data) { 
+void handlePump1(AdafruitIO_Data *data) {
   String valueData = data->value();
-  
+
   if(valueData == "ON")
-  {    
+  {
          time_1=millis();
-         digitalWrite(pumpPin_1, HIGH);    
+         digitalWrite(pumpPin_1, HIGH);
          pump1_is_on=true;
   }
   if(valueData == "OFF" && pump1_is_on== true)
   {
-         digitalWrite(pumpPin_1, LOW); 
+         digitalWrite(pumpPin_1, LOW);
          pump1->save("OFF");
          pump1_is_on=false;
   }
 }
 void handlePump2(AdafruitIO_Data *data) {
     String valueData = data->value();
-  
+
   if(valueData == "ON")
-  {    
+  {
          time_2=millis();
-         digitalWrite(pumpPin_2, HIGH);    
+         digitalWrite(pumpPin_2, HIGH);
          pump2_is_on=true;
   }
   if(valueData == "OFF" && pump2_is_on== true)
   {
-         digitalWrite(pumpPin_2, LOW); 
+         digitalWrite(pumpPin_2, LOW);
          pump2->save("OFF");
          pump2_is_on=false;
   }
 
 }
-void handlePump3(AdafruitIO_Data *data) { 
+void handlePump3(AdafruitIO_Data *data) {
 
 String valueData = data->value();
-  
+
   if(valueData == "ON")
-  {    
+  {
          time_3=millis();
-         digitalWrite(pumpPin_3, HIGH);    
+         digitalWrite(pumpPin_3, HIGH);
          pump3_is_on=true;
   }
   if(valueData == "OFF" && pump3_is_on== true)
   {
-         digitalWrite(pumpPin_3, LOW); 
+         digitalWrite(pumpPin_3, LOW);
          pump3->save("OFF");
          pump3_is_on=false;
   }
